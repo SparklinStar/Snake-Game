@@ -5,7 +5,10 @@ const gameoversound = new Audio('gameover.mp3');
 const movesound = new Audio('move.mp3');
 const musicsound = new Audio('music.mp3');
 let speed = 2;
-lastPaintTime = 0;
+let lastPaintTime = 0;
+let snakeArr = [
+    {x: 13, y: 15}
+]
 
 //Game Functions
 function main(ctime)
@@ -13,8 +16,11 @@ function main(ctime)
     window.requestAnimationFrame(main);
     console.log(ctime);
     if((ctime-lastPaintTime)/1000 < 1/speed)
-    return;
+    {
+        return;
+    }
     lastPaintTime = ctime;
+    gameEngine();
 }
 
 function gameEngine(){
@@ -24,8 +30,9 @@ function gameEngine(){
     snakeArr.forEach((e, index)=>{
         snakeElement = document.createElement('div');
         snakeElement.style.gridRowStart = e.y;
-        snakeElement.style.gridColStart = e.x;
-        
+        snakeElement.style.gridColumnStart = e.x;
+        snakeElement.classList.add('.food');
+        board.appendChild(snakeElement);
 
     }
     )
